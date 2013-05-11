@@ -38,6 +38,7 @@ public class FileRecieve implements Runnable{
 	public void run() {
 		lastrecieved = false;
 		int last_chunkid =-1;
+		int hüpf=0;
 		try(RandomAccessFile output = new RandomAccessFile(destination, "rw")) {
 			while(!(cancel || (lastrecieved&&finished()))){
 				try {
@@ -46,9 +47,11 @@ public class FileRecieve implements Runnable{
 					//System.out.println(chunkID);
 					if(chunkID!=(last_chunkid+1)){
 						output.seek(chunkID*Constants.MAX_CHUNKSIZE);
+						hüpf++;
 					}
 					recieved[chunkID]=true;
 					output.write(tmp.getData());
+					last_chunkid=chunkID;
 					if((tmp.getHeader().getTyp()&Constants.LAST_CHUNK)==Constants.LAST_CHUNK){
 						printMissing();
 						lastrecieved=true;
@@ -61,6 +64,7 @@ public class FileRecieve implements Runnable{
 				}
 			}
 			output.close();
+			System.out.println(hüpf);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e2) {
