@@ -1,0 +1,10 @@
+TypeCodes
+ 1 1 1 1 1 1 1 1
+ 1 0 0 0 0 0 0 0  Datachunk		1
+ 0 1 0 0 0 0 0 0  FirstChunk	2	
+ 0 0 1 0 0 0 0 0  LastChunk		4
+ 0 0 0 1 0 0 0 0  StatusReport	8	
+ 0 0 0 0 1 0 0 0  				16
+ 0 0 0 0 0 1 0 0  				32
+ 0 0 0 0 0 0 1 0  File			64
+ 0 0 0 0 0 0 0 1  Catalogue		128

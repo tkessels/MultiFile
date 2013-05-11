@@ -54,7 +54,7 @@ public class FileTransfer implements Runnable{
 				if(chunkID==(chunkCount-1))flag|=Constants.LAST_CHUNK;
 				new FileChunkHeader(flag,0,0,chunkID,len).writeBytes(cup, 0);
 				mc.send(new DatagramPacket(cup, cup.length, Constants.getMCGroup(),Constants.MULTICAST_PORT));
-				System.out.println(len+"sending "+chunkID);
+				//System.out.println(len+"sending "+chunkID);
 				chunkID++;
 			}
 		} catch (IOException e) {
