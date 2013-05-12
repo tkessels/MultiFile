@@ -5,6 +5,47 @@ TypeCodes
  0 0 1 0 0 0 0 0  LastChunk		4
  0 0 0 1 0 0 0 0  StatusReport	8	
  0 0 0 0 1 0 0 0  				16
- 0 0 0 0 0 1 0 0  				32
- 0 0 0 0 0 0 1 0  File			64
- 0 0 0 0 0 0 0 1  Catalogue		128
+ 0 0 0 0 0 1 0 0  File			32
+ 0 0 0 0 0 0 1 0  Catalogue		64
+ 0 0 0 0 0 0 0 1  Node			128
+ 
+ Filestatus
+ - not ready
+ - ready
+ - downloading
+ - missing parts
+ - finished
+ - cancelled
+ - requeued
+ 
+ FileCataloguestatus
+ - missing
+ - recieved
+ - state of files
+ 
+ Node
+ - online
+ - ready
+ - waiting for FileCatalogue
+ - waiting for Data
+ - Downloading
+ - 
+ 
+ 
+ 
+ SMART WOULD BE:
+	 - start with a big File
+	 - compress small Files in the Background into one File
+	 - if transfer keeps failing prospone single clients for afterwards
+	 - if transfer keeps failing mark client for tcp-transfer
+	 - resend most wanted parts / files first. 
+	 - allow tcp connections 
+
+	 
+	 
+stats:
+	missingchunks / totalchunks 		= % missing
+	missingchunks / transmittedchunks	= error rate
+	missingchunks / (
+	 
+	 

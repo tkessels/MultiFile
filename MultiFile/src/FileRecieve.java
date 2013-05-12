@@ -13,6 +13,7 @@ public class FileRecieve implements Runnable{
 	boolean[] recieved;
 	volatile boolean cancel;
 	volatile boolean lastrecieved;
+	boolean done;
 	
 	private final int fileID;
 	private final int chunkcount;
@@ -40,6 +41,8 @@ public class FileRecieve implements Runnable{
 		int last_chunkid =-1;
 		int hüpf=0;
 		try(RandomAccessFile output = new RandomAccessFile(destination, "rw")) {
+			
+			
 			while(!(cancel || (lastrecieved&&finished()))){
 				try {
 					FileChunk tmp = inbox.take();
@@ -90,22 +93,7 @@ public class FileRecieve implements Runnable{
 	}
 	
 	
-	public static void main(String[] args) throws IOException {
-		MulticastSocket mc = new MulticastSocket(Constants.MULTICAST_PORT);
-		//mc.setLoopbackMode(true);
-		mc.joinGroup(Constants.getMCGroup());
-		mc.setTimeToLive(Constants.MULTICAST_TTL);
-		mc.setReceiveBufferSize(26214400);
-		FileRecieve tmp = new FileRecieve(new File("d:\\tmp\\test.iso"), new FileDescriptor(new File("d:\\tmp\\test.iso"), 497431, 15264));
-		new Thread(tmp).start();
-		
-		while(true){
-			byte[] buf =new byte[65535];
-			DatagramPacket p = new DatagramPacket(buf, buf.length);
-			mc.receive(p);
-			tmp.put(new FileChunk(buf));
-		}
-	}
+	
 	
 
 }

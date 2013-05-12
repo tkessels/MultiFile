@@ -43,8 +43,6 @@ public class FileTransfer implements Runnable{
 			mc.setSendBufferSize(26214400);
 
 
-
-
 		byte[] cup = new byte[Constants.MAX_PAYLOAD];
 		int chunkID = 0;
 		int len = -1;

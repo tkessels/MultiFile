@@ -22,7 +22,12 @@ public class Constants {
 	public static final int DATACHUNK 	= 1;
 	public static final int FIRST_CHUNK = 2;
 	public static final int LAST_CHUNK 	= 4;
-	public static final int STATUS 		= 5;
+	public static final int STATUS 		= 8;
+	public static final int UNUSED_1	= 16;
+	public static final int UNUSED_2	= 32;
+	public static final int File		= 64;
+	public static final int Catalogue	= 128;
+	
 	
 	
 	
